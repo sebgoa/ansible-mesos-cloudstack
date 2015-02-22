@@ -1,0 +1,29 @@
+# Rule for the mesos security group
+
+  - name: SSH for mesos
+    local_action:
+     module: cloudstack_sg_rule
+     name: "{{ mesos_security_group_name }}"
+     start_port: 22
+     end_port: 22
+
+  - name: SSH for mesos
+    local_action:
+     module: cloudstack_sg_rule
+     name: "{{ mesos_security_group_name }}"
+     start_port: 5051
+     end_port: 5051
+
+  - name: SSH for mesos
+    local_action:
+     module: cloudstack_sg_rule
+     name: "{{ mesos_security_group_name }}"
+     start_port: 5050
+     end_port: 5050
+
+  - name: mesos 8080
+    local_action:
+     module: cloudstack_sg_rule
+     name: "{{ mesos_security_group_name }}"
+     start_port: 8080
+     end_port: 8080

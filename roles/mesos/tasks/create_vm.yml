@@ -1,0 +1,28 @@
+  - name: Start mesos head node
+    local_action:
+      module: cloudstack_vm
+      name: "{{ mesos_node_prefix }}{{item}}"
+      template: "{{ mesos_template }}"
+      service_offering: "{{ mesos_instance_type }}"
+      ssh_key: "{{ ssh_key }}"
+      security_groups: [ '{{ mesos_security_group_name }}' ]
+      user_data: "{{ lookup('file', '../files/userdata.yml') }}"
+    with_sequence: count={{ mesos_num_masters }}
+    register: mesos_masters
+
+  - debug: msg='default IP for backend is {{ mesos_masters.results }}'  
+  
+  - name: Start mesos nodes
+    local_action:
+      module: cloudstack_vm
+      name: "{{ mesos_node_prefix }}node{{ item }}"
+      template: "{{ mesos_template }}"
+      service_offering: "{{ mesos_instance_type }}"
+      ssh_key: "{{ ssh_key }}"
+      security_groups: [ '{{ mesos_security_group_name }}' ]
+      user_data: "{{ lookup('template', '../files/userdata.yml') }}"
+    with_sequence: count={{ mesos_num_workers }}
+    register: mesos_workers
+
+  - name: Create inventory file
+    template: src=inv.j2 dest=/Users/sebastiengoasguen/Documents/gitforks/ansible-mesos/inventory

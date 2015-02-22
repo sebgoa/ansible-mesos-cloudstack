@@ -1,7 +1,7 @@
-Ansible Recipes to Install Kubernetes
-=====================================
+Ansible Recipes to Deploy Mesos with Marathon on CloudStack
+===========================================================
 
-Basic recipes using the ansible cloudstack module to create ssh keys, sec group etc and deploy [Kubernetes](http://kubernetes.io) on [CoreOS](http://coreos.com).
+This is based of off Michael Hamrah [playbooks](https://github.com/mhamrah/ansible-mesos-playbook)
 
 Prerequisites
 -------------
@@ -11,6 +11,7 @@ You will need Ansible and [cs](https://github.com/exoscale/cs) :)
     $ sudo apt-get install -y python-pip
     $ sudo pip install ansible
     $ sudo pip install cs
+    $ sudo gem install librarian-ansible
 
 Setup cs
 --------
@@ -28,30 +29,30 @@ We need to use the http POST method to pass the userdata to the coreOS instances
 Clone recursive
 ---------------
 
-    $ git clone --recursive https://github.com/runseb/ansible-kubernetes.git
-    $ cd ansible-kubernetes
+    $ git clone --recursive https://github.com/runseb/ansible-mesos-cloudstack.git
+    $ cd ansible-mesos-cloudstack
 
 There is the [ansible-cloudstack](https://github.com/resmo/ansible-cloudstack) submodule in there.
 
-Create a Kubernetes cluster
+Get the Ansible roles needed
+----------------------------
+
+    $ sudo librarian-ansible install
+
+Create all the needed hosts
 ---------------------------
 
-    $ ansible-playbook k8s.yml
+    $ ansible-playbook mesos.yml
 
-Some variables can be edited in the `k8s.yml` file.
-This will start a Kubernetes master node and a number of compute nodes.
-This is all setup via coreOS instances and passing userdata.
-
-Check the tasks and templates in `roles/k8s`
-
-Create etcd cluster
+Provision the nodes
 -------------------
 
-That's a bonus to this work, there is a playbook to create an independent etcd cluster.
+    $ ansible-playbook mesos_cluster.yml
 
-    $ ansible-playbook etcd.yml
+Launch Application on Marathon
+------------------------------
 
-Edit some of the variables in the `etcd.yml` file directly.
+    $ curl -XPOST -H 'Content-Type:application/json' -d @nginx.json http://http://185.19.29.75:8080/v2/apps
 
 Dependencies
 ------------

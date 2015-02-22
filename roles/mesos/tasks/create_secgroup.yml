@@ -1,0 +1,7 @@
+# Create mesos security group
+
+  - name: Create mesos Security Group
+    local_action:
+     module: cloudstack_sg
+     name: "{{ mesos_security_group_name }}" 
+     description: mesos

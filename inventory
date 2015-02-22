@@ -1,4 +1,12 @@
 [default]
 localhost ansible_python_interpreter=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/python
 
-[nodes]
+[mesos_masters]
+mesos11 zoo_id=1 consul_boostrap=true ansible_ssh_host=185.19.29.75 ansible_ssh_private_key_file=~/.ssh/id_rsa_mesos
+mesos12 zoo_id=2 ansible_ssh_host=185.19.29.87 ansible_ssh_private_key_file=~/.ssh/id_rsa_mesos
+mesos13 zoo_id=3 ansible_ssh_host=185.19.29.89 ansible_ssh_private_key_file=~/.ssh/id_rsa_mesos
+
+[mesos_workers]
+mesos1node1 ansible_ssh_host=185.19.29.81 ansible_ssh_private_key_file=~/.ssh/id_rsa_mesos
+mesos1node2 ansible_ssh_host=185.19.29.82 ansible_ssh_private_key_file=~/.ssh/id_rsa_mesos
+mesos1node3 ansible_ssh_host=185.19.29.84 ansible_ssh_private_key_file=~/.ssh/id_rsa_mesos
