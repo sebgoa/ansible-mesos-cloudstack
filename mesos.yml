@@ -3,12 +3,12 @@
   connection: local
   vars:
     ssh_key: mesos
-    inventory_local_destination: $PWD/inventory
+    inventory_local_destination: /Users/sebgoa/Documents/gitforks/ansible-mesos-cloudstack/inventory
     mesos_num_masters: 1
     mesos_num_workers: 10
     mesos_security_group_name: mesos
     mesos_node_prefix: mesos1
-    mesos_template: Linux Ubuntu 14.04 LTS 64-bit 10G Disk (2014-10-28-3b8b26) 
+    mesos_template: Linux Ubuntu 14.04 LTS 64-bit
     mesos_instance_type: Tiny
 
   roles:

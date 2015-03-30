@@ -44,7 +44,7 @@ Provision the nodes
 Launch Application on Marathon
 ------------------------------
 
-    $ curl -XPOST -H 'Content-Type:application/json' -d @nginx.json http://http://185.19.29.75:8080/v2/apps
+    $ curl -si -H 'Content-Type: application/json' -d @nginx.json <IP_OF_MARATHON>:8080/v2/apps
 
 Dependencies
 ------------
