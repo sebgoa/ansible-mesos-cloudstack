@@ -1,8 +1,6 @@
 Ansible Recipes to Deploy Mesos with Marathon on CloudStack
 ===========================================================
 
-This is based of off Michael Hamrah [playbooks](https://github.com/mhamrah/ansible-mesos-playbook)
-
 Prerequisites
 -------------
 
@@ -11,7 +9,6 @@ You will need Ansible and [cs](https://github.com/exoscale/cs) :)
     $ sudo apt-get install -y python-pip
     $ sudo pip install ansible
     $ sudo pip install cs
-    $ sudo gem install librarian-ansible
 
 Setup cs
 --------
@@ -33,11 +30,6 @@ Clone recursive
     $ cd ansible-mesos-cloudstack
 
 There is the [ansible-cloudstack](https://github.com/resmo/ansible-cloudstack) submodule in there.
-
-Get the Ansible roles needed
-----------------------------
-
-    $ sudo librarian-ansible install
 
 Create all the needed hosts
 ---------------------------

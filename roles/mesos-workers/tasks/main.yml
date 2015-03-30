@@ -1,3 +1,0 @@
----
-  - include: mesos_workers.yml
-  - include: create_hosts.yml

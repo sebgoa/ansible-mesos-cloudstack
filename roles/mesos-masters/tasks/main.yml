@@ -1,3 +1,0 @@
----
-  - include: mesos_masters.yml
-  - include: create_hosts.yml
