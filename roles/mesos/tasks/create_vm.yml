@@ -25,4 +25,4 @@
     register: mesos_workers
 
   - name: Create inventory file
-    template: src=inv.j2 dest=/Users/sebastiengoasguen/Documents/gitforks/ansible-mesos/inventory
+    template: src=inv.j2 dest={{ inventory_local_destination }}

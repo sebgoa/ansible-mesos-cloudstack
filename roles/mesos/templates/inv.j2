@@ -3,11 +3,7 @@ localhost ansible_python_interpreter=/opt/local/Library/Frameworks/Python.framew
 
 [mesos_masters]
 {% for m in mesos_masters.results%}
-{% if loop.first %}
-{{ mesos_node_prefix }}{{ loop.index }} zoo_id=1 consul_boostrap=true ansible_ssh_host={{ m.default_ip }} ansible_ssh_private_key_file=~/.ssh/id_rsa_{{ ssh_key }}
-{% else %}
-{{ mesos_node_prefix }}{{ loop.index }} zoo_id={{ loop.index }} ansible_ssh_host={{ m.default_ip }} ansible_ssh_private_key_file=~/.ssh/id_rsa_{{ ssh_key }}
-{% endif %}
+{{ mesos_node_prefix }}{{ loop.index }} ansible_ssh_host={{ m.default_ip }} ansible_ssh_private_key_file=~/.ssh/id_rsa_{{ ssh_key }}
 {% endfor %}
 
 [mesos_workers]

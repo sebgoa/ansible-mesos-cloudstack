@@ -7,14 +7,15 @@
      start_port: 22
      end_port: 22
 
-  - name: SSH for mesos
+  - name: mesos 5051
     local_action:
      module: cloudstack_sg_rule
      name: "{{ mesos_security_group_name }}"
      start_port: 5051
      end_port: 5051
+     user_security_group: "{{ mesos_security_group_name }}"
 
-  - name: SSH for mesos
+  - name: Open 5050 for Mesos UI
     local_action:
      module: cloudstack_sg_rule
      name: "{{ mesos_security_group_name }}"
